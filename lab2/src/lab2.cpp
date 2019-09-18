@@ -12,15 +12,13 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char **argv) {
 	Card c;
-	c.checkCard("79927398711");
-	c.checkCard("79927398712");
-	c.checkCard("79927398713");
-	c.checkCard("79927398714");
-	c.checkCard("79927398715");
-	c.checkCard("79927398716");
-	c.checkCard("79927398717");
-	c.checkCard("79927398718");
-	return 0;
+	string cn = "";
+
+	for (int i = 1; i < argc; ++i)
+		cn += argv[i];
+
+	return c.checkCard(cn);
+
 }

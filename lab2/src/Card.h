@@ -24,12 +24,13 @@ public:
 	Card();
 	virtual ~Card();
 
-	void checkCard(string cardNumber) {
+	bool checkCard(string cardNumber) {
 		this->cardNumber = cardNumber;
 		this->cardNumberValid = this->checkValidity();
 		if (PRINT_VALIDITY) {
 			this->printResult();
 		}
+		return this->checkValidity();
 	}
 
 private:
@@ -64,7 +65,7 @@ private:
 			this->printDate();
 			cout << " Error! Invalid card number" << endl;
 		} else {
-			cout << cardNumber << endl;
+			cout << cardNumber.c_str() << endl;
 		}
 	}
 	void printDate() {
