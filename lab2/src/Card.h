@@ -10,6 +10,8 @@
 
 #include <iostream>
 #include "stdio.h"
+#include <ctime>
+
 using namespace std;
 
 #define PRINT_VALIDITY true
@@ -59,10 +61,22 @@ private:
 		// Can be turned on/off with the global variable 'PRINT_VALIDITY'
 
 		if (cardNumberValid) {
-			cout << "Bad" << endl;
+			this->printDate();
+			cout << " Error! Invalid card number" << endl;
 		} else {
-			cout << "Good" << endl;
+			cout << cardNumber << endl;
 		}
+	}
+	void printDate() {
+		char s[1000];
+
+		time_t t = time(NULL);
+		struct tm *p = localtime(&t);
+
+		strftime(s, 1000, "%A, %B %d %Y", p);
+
+		cout << s;
+
 	}
 };
 
