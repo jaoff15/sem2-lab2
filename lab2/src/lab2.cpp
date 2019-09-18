@@ -6,6 +6,10 @@
 // Description : Lab 2
 //============================================================================
 
+// shell
+// cd /home/jacoboffersen/Dropbox/2nd Semester Master/Embedded Software Design/Labs/sem2-lab2/lab2/Debug
+// ./lab2 79927398713
+
 #include <iostream>
 #include "stdio.h"
 #include "Card.h"
