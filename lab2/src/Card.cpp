@@ -7,10 +7,11 @@
 #include "Card.h"
 
 Card::Card() {
-	// TODO Auto-generated constructor stub
+	cardNumber = "";
+	cardNumberValid = false;
 }
 
 Card::~Card() {
-	// TODO Auto-generated destructor stub
+
 }
 

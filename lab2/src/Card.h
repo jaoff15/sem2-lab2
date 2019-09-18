@@ -57,6 +57,7 @@ private:
 		// Prints 'good' or 'bad' to the terminal depending on the
 		// card validity. Useful for debugging.
 		// Can be turned on/off with the global variable 'PRINT_VALIDITY'
+
 		if (cardNumberValid) {
 			cout << "Bad" << endl;
 		} else {
