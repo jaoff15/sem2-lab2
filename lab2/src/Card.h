@@ -30,7 +30,7 @@ public:
 		if (PRINT_VALIDITY) {
 			this->printResult();
 		}
-		return this->checkValidity();
+//		return this->checkValidity();
 	}
 
 private:
@@ -63,7 +63,8 @@ private:
 
 		if (cardNumberValid) {
 			this->printDate();
-			cout << " Error! Invalid card number" << endl;
+			cout << " Error! Invalid card number: " << endl;
+
 		} else {
 			cout << cardNumber.c_str() << endl;
 		}
