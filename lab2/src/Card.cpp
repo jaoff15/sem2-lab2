@@ -7,8 +7,8 @@
 #include "Card.h"
 
 Card::Card() {
-	cardNumber = "";
-	cardNumberValid = false;
+	card_number = "";
+	card_number_valid = false;
 }
 
 Card::~Card() {

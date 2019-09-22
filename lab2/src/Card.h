@@ -18,19 +18,18 @@ using namespace std;
 
 class Card {
 public:
-	string cardNumber;
-	bool cardNumberValid;
+	string card_number;
+	bool card_number_valid;
 
 	Card();
 	virtual ~Card();
 
-	bool checkCard(string cardNumber) {
-		this->cardNumber = cardNumber;
-		this->cardNumberValid = this->checkValidity();
+	bool checkCard(string card_number) {
+		this->card_number = card_number;
+		this->card_number_valid = this->checkValidity();
 		if (PRINT_VALIDITY) {
 			this->printResult();
 		}
-//		return this->checkValidity();
 	}
 
 private:
@@ -39,12 +38,12 @@ private:
 		// specified card number is valid
 		// Resource: https://en.wikipedia.org/wiki/Luhn_algorithm
 
-		int size = cardNumber.size();
-		int sum = cardNumber[size - 1] - '0';
-		int nDigits = size;
-		int parity = nDigits % 2;
-		for (int i = 0; i <= nDigits - 2; i++) {
-			int digit = cardNumber[i] - '0';
+		int size = card_number.size();
+		int sum = card_number[size - 1] - '0';
+		int card_digits = size;
+		int parity = card_digits % 2;
+		for (int i = 0; i <= card_digits - 2; i++) {
+			int digit = card_number[i] - '0';
 			if (i % 2 == parity) {
 				digit = digit * 2;
 			}
@@ -61,24 +60,20 @@ private:
 		// card validity. Useful for debugging.
 		// Can be turned on/off with the global variable 'PRINT_VALIDITY'
 
-		if (cardNumberValid) {
+		if (card_number_valid) {
 			this->printDate();
 			cout << " Error! Invalid card number: " << endl;
 
 		} else {
-			cout << cardNumber.c_str() << endl;
+			cout << card_number.c_str() << endl;
 		}
 	}
 	void printDate() {
-		char s[1000];
-
-		time_t t = time(NULL);
-		struct tm *p = localtime(&t);
-
-		strftime(s, 1000, "%A, %B %d %Y", p);
-
-		cout << s;
-
+		char time_string[1000];
+		time_t time_variable = time(NULL);
+		struct tm *p = localtime(&time_variable);
+		strftime(time_string, 1000, "%A, %B %d %Y", p);
+		cout << time_string;
 	}
 };
 

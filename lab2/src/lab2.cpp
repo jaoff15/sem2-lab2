@@ -27,33 +27,22 @@ int main(int argc, char **argv) {
 	mkfifo(myfifo, 0666);
 
 	while (1) {
-		int fd1;
-		char data[80];
+		int pipe_id;
+		char pipe_data[80];
 		// First open in read only and read
-		fd1 = open(myfifo, O_RDONLY);
-		read(fd1, data, 80);
+		pipe_id = open(myfifo, O_RDONLY);
+		read(pipe_id, pipe_data, 80);
 
-		std::string str1(data);
+		std::string raw_data_string(pipe_data);
 		// Print the read string and close
-		if (str1[0] >= '0' and str1[0] <= '9') {
-			string cn = "";
-			for (int i = 0; i < str1.size(); i++)
-				if (str1[i] >= '0' && str1[i] <= '9')
-					cn += str1[i];
-			c.checkCard(cn);
-
+		if (raw_data_string[0] >= '0' and raw_data_string[0] <= '9') {
+			string clean_data_string = "";
+			for (int i = 0; i < raw_data_string.size(); i++)
+				if (raw_data_string[i] >= '0' && raw_data_string[i] <= '9')
+					clean_data_string += raw_data_string[i];
+			c.checkCard(clean_data_string);
 		}
-
-		close(fd1);
-
+		close(pipe_id);
 	}
-
-//	string cn = "";
-//
-//	for (int i = 1; i < argc; ++i)
-//		cn += argv[i];
-
 	return 0;
-//	return c.checkCard(cn);
-
 }
