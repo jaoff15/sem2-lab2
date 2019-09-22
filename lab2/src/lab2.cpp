@@ -18,7 +18,7 @@
 //using namespace std;
 
 int main(int argc, char **argv) {
-	Card c;
+	Card card;
 
 	char *myfifo = "pipe";
 
@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
 			for (int i = 0; i < raw_data_string.size(); i++)
 				if (raw_data_string[i] >= '0' && raw_data_string[i] <= '9')
 					clean_data_string += raw_data_string[i];
-			c.checkCard(clean_data_string);
+			card.checkCard(clean_data_string);
 		}
 		close(pipe_id);
 	}
