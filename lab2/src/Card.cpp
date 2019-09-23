@@ -12,7 +12,7 @@ Card::Card() {
 Card::~Card() {
 }
 
-bool Card::checkValidity(const string card_number) {
+bool Card::checkValidity(const std::string card_number) {
 	// Performs the Luhn algorithm to check if the
 	// specified card number is valid
 	// Resource: https://en.wikipedia.org/wiki/Luhn_algorithm
@@ -31,5 +31,5 @@ bool Card::checkValidity(const string card_number) {
 		}
 		sum = sum + digit;
 	}
-	return !(sum % 10) == 0;
+	return (sum % 10) == 0;
 }

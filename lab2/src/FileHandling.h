@@ -20,6 +20,7 @@ public:
 	const std::string file_name;
 
 	void write(const std::string data);
+
 private:
 	std::string getTime();
 

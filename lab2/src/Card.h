@@ -11,8 +11,6 @@
 #include <iostream>
 #include "stdio.h"
 
-using namespace std;
-
 // Valid number: 1234098743217895
 // Invalid number: 4321543265437654
 
@@ -21,7 +19,7 @@ public:
 	Card();
 	virtual ~Card();
 
-	bool checkValidity(const string card_number);
+	bool checkValidity(const std::string card_number);
 
 };
 
