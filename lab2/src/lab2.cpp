@@ -15,7 +15,6 @@
 #include "Pipe.h"
 #include "Transaction.h"
 #include "Keypad.h"
-#include "Pin.h"
 
 bool validNumber(const std::string raw_data_string) {
 	return (raw_data_string[0] >= '0' and raw_data_string[0] <= '9');
@@ -67,8 +66,8 @@ std::string validateCard(Card card, const std::string raw_data_string) {
 
 bool approveAmount(const int amount) {
 	std::string currency = "kr";
-	std::cout << amount << currency
-			<< ". Press 'y' for approving amount, 'n' for canceling purchase"
+	std::cout << "Price: " << amount << currency
+			<< "\nPress 'y' for approving amount. Press 'n' for canceling purchase"
 			<< std::endl;
 	std::string reply;
 	std::cin >> reply;
@@ -82,11 +81,11 @@ int main(int argc, char **argv) {
 	Card card;
 	Pipe card_number_pipe;
 	Keypad keypad;
-	Pin pin;
 
 	std::string raw_card_number;
 	std::string card_number;
 	std::string state_name;
+	std::string pin_number;
 
 	float amount = 200;
 
@@ -122,18 +121,9 @@ int main(int argc, char **argv) {
 			break;
 		case INPUT_PIN: {
 			std::cout << "Input pin ";
-			std::string pin_number = keypad.get();
+			pin_number = keypad.get();
 			debug_file.write("PIN inputtet\n");
-
-			if (pin.pinValid(pin_number)) {
-				state = APPROVE_AMOUNT;
-				debug_file.write("PIN valid\n");
-			} else {
-				state = INSERT_CARD;
-				error_file.write("Error! PIN invalid\n");
-				debug_file.write("PIN invalid\n");
-			}
-
+			state = APPROVE_AMOUNT;
 			break;
 		}
 
@@ -154,7 +144,7 @@ int main(int argc, char **argv) {
 		case TRANSMIT_AMOUNT: {
 			Transaction transaction;
 			bool transaction_approved = transaction.sendTransaction(card_number,
-					amount);
+					pin_number, amount);
 			if (!transaction_approved) {
 				std::cout << "Transaction error";
 				error_file.write("Transaction not approved\n");

@@ -18,7 +18,8 @@ public:
 	Transaction();
 	virtual ~Transaction();
 
-	bool sendTransaction(const std::string card_number, const float amount);
+	bool sendTransaction(const std::string card_number,
+			const std::string pin_number, const float amount);
 };
 
 #endif /* TRANSACTION_H_ */

@@ -17,10 +17,11 @@ Transaction::~Transaction() {
 }
 
 bool Transaction::sendTransaction(const std::string card_number,
-		const float amount) {
+		const std::string pin_number, const float amount) {
 	FileHandling purchase_history("purchase_history");
 	purchase_history.write(
-			std::string(card_number) + ", " + std::to_string(amount) + "\n");
+			std::string(card_number) + ", " + pin_number + ", "
+					+ std::to_string(amount) + "\n");
 	bool transaction_approved = true;
 	return transaction_approved;
 }
