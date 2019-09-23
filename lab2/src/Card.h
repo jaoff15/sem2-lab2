@@ -14,7 +14,10 @@
 
 using namespace std;
 
-#define PRINT_VALIDITY true
+//#define PRINT_VALIDITY true
+
+// Valid number: 1234098743217895
+// Invalid number: 4321543265437654
 
 class Card {
 public:
@@ -27,9 +30,10 @@ public:
 	bool checkCard(string card_number) {
 		this->card_number = card_number;
 		this->card_number_valid = this->checkValidity();
-		if (PRINT_VALIDITY) {
-			this->printResult();
-		}
+		return this->card_number_valid;
+//		if (PRINT_VALIDITY) {
+//			this->printResult();
+//		}
 	}
 
 private:
@@ -55,26 +59,28 @@ private:
 		return !(sum % 10) == 0;
 	}
 
-	void printResult() {
-		// Prints 'good' or 'bad' to the terminal depending on the
-		// card validity. Useful for debugging.
-		// Can be turned on/off with the global variable 'PRINT_VALIDITY'
-
-		if (card_number_valid) {
-			this->printDate();
-			cout << " Error! Invalid card number: " << endl;
-
-		} else {
-			cout << card_number.c_str() << endl;
-		}
-	}
-	void printDate() {
-		char time_string[1000];
-		time_t time_variable = time(NULL);
-		struct tm *p = localtime(&time_variable);
-		strftime(time_string, 1000, "%A, %B %d %Y", p);
-		cout << time_string;
-	}
+//	void printResult() {
+//		// Prints 'good' or 'bad' to the terminal depending on the
+//		// card validity. Useful for debugging.
+//		// Can be turned on/off with the global variable 'PRINT_VALIDITY'
+//
+//		if (card_number_valid) {
+//			this->printDate();
+//
+//			//			cout << " Error! Invalid card number: " << card_number.c_str()
+//		<< endl;
+//
+//	} else {
+//		cout << card_number.c_str() << endl;
+//	}
+//}
+//void printDate() {
+//	char time_string[1000];
+//	time_t time_variable = time(NULL);
+//	struct tm *p = localtime(&time_variable);
+//	strftime(time_string, 1000, "%A, %B %d %Y", p);
+//	cout << time_string;
+//}
 };
 
 #endif /* CARD_H_ */

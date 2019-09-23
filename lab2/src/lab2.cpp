@@ -14,11 +14,13 @@
 #include <unistd.h>
 
 #include "Card.h"
+#include "File.h"
 
 //using namespace std;
 
 int main(int argc, char **argv) {
 	Card card;
+	File error_file("Error_File.txt");
 
 	char *myfifo = "pipe";
 
@@ -40,7 +42,14 @@ int main(int argc, char **argv) {
 			for (int i = 0; i < raw_data_string.size(); i++)
 				if (raw_data_string[i] >= '0' && raw_data_string[i] <= '9')
 					clean_data_string += raw_data_string[i];
-			card.checkCard(clean_data_string);
+			bool card_valid = card.checkCard(clean_data_string);
+			if (card_valid) {
+				cout << clean_data_string << endl;
+			} else {
+				error_file.write(
+						"Error! Card number invalid: " + clean_data_string
+								+ "\n");
+			}
 		}
 		close(pipe_id);
 	}
