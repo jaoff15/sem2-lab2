@@ -10,6 +10,7 @@
 Pipe::Pipe() {
 // Creating the named file(FIFO)
 // mkfifo(<pathname>,<permission>)
+	fifo_id = "swipe";
 	mkfifo(fifo_id, 0666);
 
 }

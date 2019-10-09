@@ -25,7 +25,7 @@ public:
 	std::string readPipe();
 
 private:
-	const char *fifo_id = "pipe";
+	const char *fifo_id;
 };
 
 #endif /* PIPE_H_ */

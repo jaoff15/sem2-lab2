@@ -164,6 +164,7 @@ int main(int argc, char **argv) {
 
 	// Log state changes
 	if (old_state != state) {
+		std::cout << "State changed to " << state_name << std::endl;
 		debug_file.write("State changed to " + state_name + "\n");
 	}
 	old_state = state;
